@@ -1,0 +1,41 @@
+.box-1{
+  width: 150px;
+  height: 100px;
+  background-color: red;
+  color: white;
+  border-radius: 10px;
+  /* border: solid black; */
+  text-align: center;
+  justify-content: center;
+  padding: 2%;
+  box-shadow: 0px -1px 15px 10px rgba(0,0,0,0.28);
+-webkit-box-shadow: 0px -1px 15px 10px rgba(0,0,0,0.28);
+-moz-box-shadow: 0px -1px 15px 10px rgba(0,0,0,0.28);
+}
+
+.fitness-section{
+  width: 100vw;
+  height: 40vh;
+  background-color: red;
+  
+}
+
+.fitness-section-div{
+  width: 95vw;
+  height: 40vh;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* .finess-section-first-div{
+
+} */
+
+.finess-section-second-div{
+  width: 60vw;
+  /* height: 100%; */
+  display: flex;
+  justify-content: space-evenly;
+}

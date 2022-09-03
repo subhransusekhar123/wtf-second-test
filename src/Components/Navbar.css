@@ -1,0 +1,11 @@
+
+
+.nav-link{
+  color: white !important;
+}
+
+@media (width > 900px) {
+  .login{
+    visibility: hidden;
+  }
+}

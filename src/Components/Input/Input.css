@@ -1,0 +1,31 @@
+body{
+  box-sizing: border-box;
+}
+
+.input-first{
+  border: 0;
+  outline: 0;
+}
+
+.input{
+  width: 95%;
+  display: flex;
+  justify-content: space-between;
+  margin:auto;
+  margin-top:1%;
+  margin-bottom: 1%;
+  border: 2px solid white;
+  padding:.5% .3%;
+  border-radius: 10px;
+}
+
+
+.input-toolbox{
+  width: 10%;
+  display: flex;
+  justify-content: space-evenly;
+
+}
+/* svg{
+  
+} */

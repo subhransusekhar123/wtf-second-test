@@ -1,0 +1,16 @@
+.card{
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.card-body{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.book-show{
+  display: flex;
+  justify-content: space-between;
+}

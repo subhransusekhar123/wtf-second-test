@@ -1,0 +1,24 @@
+.row{
+  width: 95%;
+  margin: auto;
+}
+
+.search-price{
+  display: flex;
+}
+
+.search-price-input{
+  width: 40%;
+}
+
+.search-price-input:nth-child(2){
+  margin-left:1% ;
+}
+
+/* .left-section{
+ 
+}
+.right-section{
+  
+} */
+
