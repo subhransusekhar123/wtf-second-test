@@ -3,13 +3,25 @@ import React from 'react';
 import Card from '../Card/Card';
 import "./Search.css";
 
-const Search = ({ longitude,latitude }) => {
-  const [firstDisplayAddress,setFirstDisplayAddress] = React.useState([]);
-  let [displayAddress,setDisplayAddress] = React.useState([]) ;
+const Search = ({ longitude,latitude,callApi2,firstDisplayAddress,setFirstDisplayAddress }) => {
+  // let [displayAddress,setDisplayAddress] = React.useState([]) ;
   const [location,setLocation] = React.useState("");
   const [address,setAddress] = React.useState([]);//api data
 
+  
+  const callApi3 = () => {
+    axios.get(`https://devapi.wtfup.me/gym/nearestgym?lat=${latitude}&long=${longitude}&city=${location}`)
+    .then((res)=>{
+      setFirstDisplayAddress(res?.data.data)
+      console.log(firstDisplayAddress)
+    })
+    .catch((err)=>console.log(err))
+  }
 
+const changeHandler2 = (e) => {
+  setLocation(e.target.value)
+  callApi3()
+}
   const changeHandler = (e) => {
     setLocation(e.target.value)
     console.log( location)
@@ -17,15 +29,7 @@ const Search = ({ longitude,latitude }) => {
     find_locations ( location )
   }
 
-  const callApi2 = () => {
-    // axios.get(`https://devapi.wtfup.me/gym/nearestgym?lat=${latitude}&long=${longitude}`)
-    axios.get("https://devapi.wtfup.me/gym/nearestgym?lat=30.325488815850512&long=78.0042384802231")
-    .then((res)=>{
-      setFirstDisplayAddress(res.data.data)
-      console.log(firstDisplayAddress)
-    })
-    .catch((err)=>console.log(err))
-  }
+
 
   const callApi  = () => {
     axios.get("https://api.wtfup.me/gym/places")
@@ -35,8 +39,7 @@ const Search = ({ longitude,latitude }) => {
 
   React.useEffect(()=> {
     callApi();
-    callApi2();
-  },[displayAddress])
+  },[])
 
 
 let boxClickHandler = (ele) => {
@@ -49,7 +52,7 @@ let boxClickHandler = (ele) => {
     for(let i = 0 ; i < address.length ; i++){
       if(city == address[i].city){
          setFirstDisplayAddress([...address[i].addressComponent])
-          console.log(displayAddress)
+          console.log(firstDisplayAddress)
       }
     }
   }
@@ -62,7 +65,7 @@ let boxClickHandler = (ele) => {
       <div className='left-section col-3'>
         <h3 className='text-light'>Filters</h3>
         <h4 className='text-light'>Location</h4>
-        <input type="text" name="" id="" onChange = {changeHandler} />
+        <input type="text" name="" id="" onChange = {changeHandler2} />
         <h4 className='text-light'>Price</h4>
         <div className='search-price'>
           <input type="number" name="" id="" className='search-price-input'/>
@@ -80,7 +83,7 @@ let boxClickHandler = (ele) => {
         <h4 className='text-light'>Locations</h4>
         <div>
           {
-            firstDisplayAddress.map((ele)=>{
+            firstDisplayAddress?.map((ele)=>{
               return (
                 <>
                   <div className='text-light' >{ `${ele.address1,ele.address2}`}</div>
@@ -97,7 +100,14 @@ let boxClickHandler = (ele) => {
       </div>
       <div className='right-section col-9'>
         {
-          firstDisplayAddress.map((ele)=> {
+          firstDisplayAddress?.length === 0  ? 
+          address?.map((ele)=> {
+            return (          
+                <Card address={ele.address1}/>
+            )
+          })
+          :
+          firstDisplayAddress?.map((ele)=> {
             return (          
                 <Card address={ele.address1}/>
             )

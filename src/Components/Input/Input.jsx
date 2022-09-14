@@ -1,9 +1,6 @@
 import React from 'react'
 import "./Input.css"
-const Input = ( {setLatitude,setLongitude,latitude,longitude}) => {
-
-
-
+const Input = ( {setLatitude,setLongitude,latitude,longitude,callApi2}) => {
 
   function getLocation() {
     if (navigator.geolocation) {
@@ -16,6 +13,7 @@ const Input = ( {setLatitude,setLongitude,latitude,longitude}) => {
   function showPosition(position) {
     setLatitude(position.coords.latitude)
     setLongitude(position.coords.longitude)
+    callApi2()
    console.log(latitude,longitude)
   }
 
