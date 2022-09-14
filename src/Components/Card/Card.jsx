@@ -2,7 +2,7 @@ import React from 'react';
 import "./Card.css";
 
 const Card = ({address}) => {
-  console.log(address)
+  // console.log(address)
   return (
     <div className='card row'>
       <div className="col-5">
