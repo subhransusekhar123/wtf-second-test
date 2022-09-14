@@ -12,8 +12,8 @@ const Search = ({ longitude,latitude }) => {
 
   const changeHandler = (e) => {
     setLocation(e.target.value)
-    console.log(location)
-    console.log(address)
+    console.log( location)
+    console.log( address )
     find_locations ( location )
   }
 
@@ -29,22 +29,26 @@ const Search = ({ longitude,latitude }) => {
 
   const callApi  = () => {
     axios.get("https://api.wtfup.me/gym/places")
-    .then((res)=> setAddress(res.data.data))
-    
-    .catch((err)=> console.log(err))
+    .then((res)=> setAddress( res.data.data ))
+    .catch((err)=> console.log( err ))
   }
 
   React.useEffect(()=> {
     callApi();
-    callApi2()
+    callApi2();
   },[displayAddress])
+
+
+let boxClickHandler = (ele) => {
+  setFirstDisplayAddress()
+}
 
 
 
   let find_locations = ( city ) => {
     for(let i = 0 ; i < address.length ; i++){
       if(city == address[i].city){
-         setDisplayAddress([...address[i].addressComponent])
+         setFirstDisplayAddress([...address[i].addressComponent])
           console.log(displayAddress)
       }
     }
@@ -76,10 +80,10 @@ const Search = ({ longitude,latitude }) => {
         <h4 className='text-light'>Locations</h4>
         <div>
           {
-            displayAddress.map((ele)=>{
+            firstDisplayAddress.map((ele)=>{
               return (
                 <>
-                  <div className='text-light'>{ `${ele.address1,ele.address2}`}</div>
+                  <div className='text-light' >{ `${ele.address1,ele.address2}`}</div>
                 </>
               )
             })
@@ -93,11 +97,9 @@ const Search = ({ longitude,latitude }) => {
       </div>
       <div className='right-section col-9'>
         {
-          displayAddress.map((ele)=> {
-            return (
-              
+          firstDisplayAddress.map((ele)=> {
+            return (          
                 <Card address={ele.address1}/>
-              
             )
           })
         }
